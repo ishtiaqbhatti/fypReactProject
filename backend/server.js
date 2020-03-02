@@ -10,12 +10,12 @@ const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 const cors = require("cors");
 const errorHandler = require("./middleware/error");
-// const connectDB = require("./config/db");
+const connectDB = require("./config/connectDb");
 
 // Load env vars
 
 // Connect to database
-// connectDB();
+connectDB();
 
 // Route files
 const products = require("./routes/products");

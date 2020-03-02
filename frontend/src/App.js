@@ -49,14 +49,12 @@ import AdminDashboard from "./component/admin";
 import SavedCardsadd from "./component/Account/SavedCardsadd";
 import { receiveProducts } from "./actions";
 import { connect } from "react-redux";
-import New from "./component/New/New";
+import Compare from "./component/shop/Compare";
+
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentWillMount() {
-    this.props.receiveProducts();
-  }
+  componentDidMount = async () => {
+    await this.props.receiveProducts();
+  };
   getUrl(pathname) {
     let pathArray = pathname.split("/");
     return `/${pathArray[1]}` === "/ComingSoon"
@@ -84,12 +82,11 @@ class App extends React.Component {
               <Headers />
               <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route exact path="/new" component={New} />
                 <Route exact path="/index-new-fashion" component={HomePage2} />
                 <Route exact path="/index-modern" component={HomePage3} />
                 <Route exact path="/index-home-classic" component={HomePage4} />
-                <Route exact path="/newCom" component={HomePage4} />
                 <Route exact path="/shop" component={ShopPage} />
+                <Route exact path="/compare" component={Compare} />
                 <Route exact path="/shop1" component={ShopPage1} />
                 <Route exact path="/shop2" component={ShopPage2} />
                 <Route exact path="/shop3" component={ShopPage3} />
@@ -151,6 +148,7 @@ class App extends React.Component {
                 <Route exact path="/SuccessScreen" component={SuccessScreen} />
                 <Route exact path="/Reports" component={Reports} />
                 <Route exact path="/Invoices" component={Invoices} />
+
                 <Route path={`/shop/:category/:id`} component={ProductDetail} />
                 <Route exact component={PageNotFound} />
               </Switch>
